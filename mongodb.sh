@@ -6,7 +6,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-LOGS_FOLDER="/var/log/shell-roboshop.git"
+LOGS_FOLDER="/var/log/shell-roboshop"
 SCRIPT_NAME=$( echo $0 | cut -d "." -f1 )
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log" # /var/log/shell-script/16-logs.log
 
@@ -28,7 +28,7 @@ VALIDATE(){ # functions receive inputs through args just like shell script args
 }
 
     cp mongo.repo /etc/yum.repos.d/mongo.repo
-    VALIDATE $? "Adding Mongo.repo"
+    VALIDATE $? "Adding Mongo repo"
 
     dnf install mongodb-org -y &>>$LOG_FILE
     VALIDATE $? "Installing Mongodb" 
