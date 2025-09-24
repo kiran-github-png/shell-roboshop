@@ -34,7 +34,7 @@ VALIDATE(){ # functions receive inputs through args just like shell script args
     VALIDATE $? "Installing MongoDB" 
 
     systemctl enable mongod &>>$LOG_FILE
-    VALIDATE  $? "Enabling Mongodb"
+    VALIDATE  $? "Enable MongoDB"
  
     systemctl start mongod 
     VALIDATE $? "Start MongoDB"
