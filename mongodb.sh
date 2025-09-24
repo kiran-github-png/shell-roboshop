@@ -31,10 +31,10 @@ VALIDATE(){ # functions receive inputs through args just like shell script args
     VALIDATE $? "Adding Mongo repo"
 
     dnf install mongodb-org -y &>>$LOG_FILE
-    VALIDATE $? "Installing Mongodb" 
+    VALIDATE $? "Installing MongoDB" 
 
     systemctl enable mongod &>>$LOG_FILE
-    VALIDATE  $? "Enabling mmongodb"
+    VALIDATE  $? "Enabling Mongodb"
  
     systemctl start mongod 
-    VALIDATE $? "Starting mongodb"
+    VALIDATE $? "Start MongoDB"
