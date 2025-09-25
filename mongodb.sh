@@ -20,27 +20,27 @@ fi
 
 VALIDATE(){ # functions receive inputs through args just like shell script args
     if [ $1 -ne 0 ]; then
-        echo -e "$2 ... $R FAILURE $N" | tee -a $LOG_FILE 
+        echo -e "$2 ... $R FAILURE $N" | tee -a $LOG_FILE
         exit 1
     else
         echo -e "$2 ... $G SUCCESS $N" | tee -a $LOG_FILE
     fi
 }
 
-    cp mongo.repo /etc/yum.repos.d/mongo.repo
-    VALIDATE $? "Adding Mongo repo"
+cp mongo.repo /etc/yum.repos.d/mongo.repo
+VALIDATE $? "Adding Mongo repo"
 
-    dnf install mongodb-org -y &>>$LOG_FILE
-    VALIDATE $? "Installing MongoDB" 
+dnf install mongodb-org -y &>>$LOG_FILE
+VALIDATE $? "Installing MongoDB"
 
-    systemctl enable mongod &>>$LOG_FILE
-    VALIDATE  $? "Enable MongoDB"
- 
-    systemctl start mongod 
-    VALIDATE $? "Start MongoDB"
+systemctl enable mongod &>>$LOG_FILE
+VALIDATE $? "Enable MongoDB"
 
-    sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
-    VALIDATE $? "Allowing Remote Connectons to mongodb"
+systemctl start mongod 
+VALIDATE $? "Start MongoDB"
 
-    systemctl restart mongod
-    VALIDATE $? "Restarted MongoDB"
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
+VALIDATE $? "Allowing remote connections to MongoDB"
+
+systemctl restart mongod
+VALIDATE $? "Restarted MongoDB"
