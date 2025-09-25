@@ -38,3 +38,9 @@ VALIDATE(){ # functions receive inputs through args just like shell script args
  
     systemctl start mongod 
     VALIDATE $? "Start MongoDB"
+
+    sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
+    VALIDATE $? "Allowing Remote Connectons to mongodb"
+
+    systemctl restart mongod
+    VALIDATE $? "Restarted MongoDB"
